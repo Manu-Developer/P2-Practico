@@ -98,6 +98,42 @@ void eliminarNodo(nodo*& lista, int elemento) {
     }
 }
 
+void removerElemento(nodo*& lista, int x) {
+    if (lista != NULL) {
+        nodo* aux = lista;
+        nodo* anterior = NULL;
+
+        while (aux != NULL && aux->elemento != x) {
+            anterior = aux;
+            aux = aux->siguiente;
+        }
+
+        // El elemento no ha sido encontrado
+        if (aux == NULL) {
+            printf("El elemento no ha sido encontrado");
+        }
+        // El primer elemento sera el que eliminemos
+        else if (anterior == NULL) {
+            lista = lista->siguiente;
+            delete aux;
+        }
+        // El elemento a eliminar esta en la lista, pero no es el primer nodo
+        else {
+            anterior->siguiente = aux->siguiente;
+            delete aux;
+        }
+    }
+}
+
+void eliminarTodos(nodo*& lista) {
+    nodo* auxiliar;
+    while (lista != NULL) {
+        auxiliar = lista->siguiente;
+        delete lista;
+        lista = auxiliar;
+    }
+}
+
 void estaEnLista(nodo* lista, int elemento) {
     nodo* auxiliar = lista;
     bool estaEnLista = false;
@@ -127,7 +163,8 @@ int main() {
         printf("2. Mostrar los elementos de la lista.\n");
         printf("3. Buscar un elemento dentro de la lista.\n");
         printf("4. Eliminar un elemento de la lista.\n");
-        printf("5. Salir.\n\n");
+        printf("5. Eliminar todos los elementos de la lista.\n");
+        printf("6. Salir.\n\n");
 
         printf("Ingrese una opcion: ");
         scanf("%d", &opcion);
@@ -153,10 +190,14 @@ int main() {
             case 4:
                 printf("Ingrese el elemento a eliminar: ");
                 scanf("%d", &elemento);
-                eliminarNodo(primero, elemento);
+                removerElemento(primero, elemento);
                 break;
 
             case 5:
+                eliminarTodos(primero);
+                break;
+
+            case 6:
                 printf("Adios\n");
                 break;
 
@@ -165,7 +206,7 @@ int main() {
                 break;
         }
 
-    } while (opcion != 5);
+    } while (opcion != 6);
 
     return 0;
 }

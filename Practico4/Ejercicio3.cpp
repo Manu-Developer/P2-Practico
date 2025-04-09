@@ -31,7 +31,11 @@ lista listaVacia() {
     return listaVacia;
 }
 
-lista insertarInicio(lista l, int x) {
+bool estaVacia(lista l) {
+    return l == NULL;
+}
+
+lista insertarInicio(lista& l, int x) {
     lista nuevoNodo = new nodo_doble;
     nuevoNodo->elemento = x;
 
@@ -43,7 +47,8 @@ lista insertarInicio(lista l, int x) {
     } else {
         nuevoNodo->anterior = NULL;
         nuevoNodo->siguiente = l;
-        l->anterior = nuevoNodo;  // Este paso faltaba en tu versión original
+        l->anterior = nuevoNodo;
+        l = nuevoNodo;
         return nuevoNodo;
     }
 }
@@ -51,7 +56,7 @@ lista insertarInicio(lista l, int x) {
 bool esElemento(lista l, int x) {
     bool esElemento = false;
 
-    while (l != NULL) {
+    while (l != NULL && !esElemento) {
         if (l->elemento == x) {
             esElemento = true;
         }
@@ -112,10 +117,28 @@ void insertarOrdenado(int x, lista& l) {
         nuevo->anterior = iterador;
 
         if (iterador->siguiente != NULL) {
-            iterador->siguiente->anterior = NULL;
+            iterador->siguiente->anterior = nuevo;
         }
 
         iterador->siguiente = nuevo;
+    }
+}
+
+void removerUltimo(lista& l) {
+    if (l != NULL) {
+        lista aux = l;
+        while (aux->siguiente != NULL) {
+            aux = aux->siguiente;
+        }
+
+        if (aux->anterior == NULL) {
+            // Solo hay un nodo
+            delete aux;
+            l = NULL;
+        } else {
+            aux->anterior->siguiente = NULL;
+            delete aux;
+        }
     }
 }
 
@@ -123,6 +146,8 @@ int main() {
     lista primero = new nodo_doble;
     lista segundo = new nodo_doble;
     lista tercero = new nodo_doble;
+    lista cuarto = new nodo_doble;
+    lista quinto = new nodo_doble;
 
     primero->elemento = 100;
     primero->anterior = NULL;
@@ -132,8 +157,16 @@ int main() {
     segundo->siguiente = tercero;
     tercero->elemento = 300;
     tercero->anterior = segundo;
-    tercero->siguiente = NULL;
+    tercero->siguiente = cuarto;
+    cuarto->elemento = 400;
+    cuarto->anterior = tercero;
+    cuarto->siguiente = quinto;
+    quinto->elemento = 500;
+    quinto->anterior = cuarto;
+    quinto->siguiente = NULL;
 
+    imprimirLista(primero);
+    removerUltimo(primero);
     imprimirLista(primero);
 
     return 0;

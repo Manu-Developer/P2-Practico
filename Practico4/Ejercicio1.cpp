@@ -183,11 +183,11 @@ int main() {
     segundo->elemento = 200;
     segundo->siguiente = tercero;
     tercero->elemento = 300;
-    tercero->siguiente = NULL;
+    tercero->siguiente = cuarto;
 
-    cuarto->elemento = 200;
+    cuarto->elemento = 500;
     cuarto->siguiente = quinto;
-    quinto->elemento = 300;
+    quinto->elemento = 600;
     quinto->siguiente = NULL;
 
     imprimirLista(primero);
