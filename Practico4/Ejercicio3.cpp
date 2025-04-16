@@ -35,21 +35,18 @@ bool estaVacia(lista l) {
     return l == NULL;
 }
 
-lista insertarInicio(lista& l, int x) {
+// Se puede refactorizar aun mas.
+void insertarInicio(lista& l, int x) {
     lista nuevoNodo = new nodo_doble;
     nuevoNodo->elemento = x;
+    nuevoNodo->anterior = NULL;
+    nuevoNodo->siguiente = l;
 
     if (l == NULL) {
         l = nuevoNodo;
-        nuevoNodo->anterior = NULL;
-        nuevoNodo->siguiente = NULL;
-        return nuevoNodo;
     } else {
-        nuevoNodo->anterior = NULL;
-        nuevoNodo->siguiente = l;
         l->anterior = nuevoNodo;
         l = nuevoNodo;
-        return nuevoNodo;
     }
 }
 
@@ -67,28 +64,26 @@ bool esElemento(lista l, int x) {
 }
 
 void removerOcurrencias(lista& l, int x) {
-    // Eliminar nodos al inicio
-    while (l != NULL && l->elemento == x) {
-        lista temp = l;
-        l = l->siguiente;
-        if (l != NULL) l->anterior = NULL;
-        delete temp;
-    }
+    lista lPosicion, aBorrar = l;
 
-    // Eliminar nodos en el resto de la lista
-    lista actual = l;
-    while (actual != NULL) {
-        if (actual->elemento == x) {
-            lista anterior = actual->anterior;
-            lista siguiente = actual->siguiente;
+    while (lPosicion != NULL) {
+        if (lPosicion->elemento == x) {
+            aBorrar = lPosicion;
 
-            if (anterior != NULL) anterior->siguiente = siguiente;
-            if (siguiente != NULL) siguiente->anterior = anterior;
+            if (lPosicion->anterior != NULL) {
+                lPosicion->anterior->siguiente = lPosicion->siguiente;
+            } else {
+                l = lPosicion->siguiente;
+            }
 
-            delete actual;
-            actual = siguiente;
+            if (lPosicion->siguiente != NULL) {
+                lPosicion->siguiente->anterior = lPosicion->anterior;
+            }
+
+            lPosicion = lPosicion->siguiente;
+            delete aBorrar;
         } else {
-            actual = actual->siguiente;
+            lPosicion = lPosicion->siguiente;
         }
     }
 }

@@ -134,6 +134,22 @@ void eliminarTodos(nodo*& lista) {
     }
 }
 
+void eliminarUltimo(nodo*& lista) {
+    if (lista != NULL) {
+        if (lista->siguiente == NULL) {
+            delete lista;
+            lista = NULL;
+        } else {
+            nodo* auxiliar = lista;
+            while (auxiliar->siguiente->siguiente != NULL) {
+                auxiliar = auxiliar->siguiente;
+            }
+            delete auxiliar->siguiente;
+            auxiliar->siguiente = NULL;
+        }
+    }
+}
+
 void estaEnLista(nodo* lista, int elemento) {
     nodo* auxiliar = lista;
     bool estaEnLista = false;
