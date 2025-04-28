@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 int main() {
-    int *puntero = new int;
-    *puntero = 5;
-    printf("%d\n", puntero);
-    return 0;
+    for (int i = 0; i < 50; i++) {
+        int f = 10;
+        printf("Hola");
+    }
 }
