@@ -70,8 +70,6 @@ bool esListaVacia(lista l) {
 }
 
 void imprimirLista(lista l) {
-    lista auxiliarLista = l;
-
     if (l == NULL) {
         printf("Lista vacia\n");
         return;
@@ -79,9 +77,9 @@ void imprimirLista(lista l) {
 
     printf("Lista: ");
 
-    while (auxiliarLista != NULL) {
-        printf("%d ", auxiliarLista->elemento);
-        auxiliarLista = auxiliarLista->siguiente;
+    while (l != NULL) {
+        printf("%d ", l->elemento);
+        l = l->siguiente;
     }
 
     printf("\n");
@@ -101,24 +99,6 @@ void insertarOrdenado(int x, lista &l) {
         }
         nuevoNodo->siguiente = auxiliarLista->siguiente;
         auxiliarLista->siguiente = nuevoNodo;
-    }
-}
-
-void insertarOrdenadoV2(int x, lista &l) {
-    lista nuevoNodo = new nodo;
-    nuevoNodo->elemento = x;
-    nuevoNodo->siguiente = NULL;
-
-    if (l == NULL || l->elemento >= x) {
-        nuevoNodo->siguiente = l;
-        l = nuevoNodo;
-    } else {
-        lista l_iter = l;
-        while (l_iter->siguiente != NULL && l_iter->siguiente->elemento < x) {
-            l_iter = l_iter->siguiente;
-        }
-        nuevoNodo->siguiente = l_iter->siguiente;
-        l_iter->siguiente = nuevoNodo;
     }
 }
 
@@ -191,6 +171,6 @@ int main() {
     quinto->siguiente = NULL;
 
     imprimirLista(primero);
-    printf("%d", esSubLista(cuarto, primero));
+
     return 0;
 }

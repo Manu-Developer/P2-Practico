@@ -35,13 +35,11 @@ int contarElems(AB arbol) {
 int contarHojas(AB arbol) {
     if (arbol == NULL) {
         return 0;
-    }
-
-    if (arbol->der == NULL && arbol->izq == NULL) {
+    } else if (arbol->der == NULL && arbol->izq == NULL) {
         return 1;
+    } else {
+        return contarHojas(arbol->izq) + contarHojas(arbol->der);
     }
-
-    return contarHojas(arbol->izq) + contarHojas(arbol->der);
 }
 
 int maximo(int n1, int n2) {

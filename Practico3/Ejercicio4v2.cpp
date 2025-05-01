@@ -3,18 +3,18 @@
 /* Inserta e en A [1.. n +1] de manera ordenada .
 Precondicion: n >=0. Si n >=1 = > A [1.. n] está ordenado de manera creciente . A[n+1] es indeterminado .
 Postcondicion: A [1.. n+1] queda ordenado de manera creciente . */
-void insertarOrdenado(int* A, int n, float e) {
-    if ((n == 0) || e > A[n]) {  // Si el arreglo es vacio o "e" es el mayor de todos, lo pongo al final.
-        A[n + 1] = e;
+void insertarOrdenado(int* A, int n, int e) {
+    if (n == 0 || e >= A[n - 1]) {
+        A[n] = e;
     } else {
-        A[n + 1] = A[n];
+        A[n] = A[n - 1];
         insertarOrdenado(A, n - 1, e);
     }
 }
 
 void insertarOrdenadov2(int* A, int n, float e) {
     while ((n > 0) && (e < A[n])) {
-        A[n + 1] = n;
+        A[n + 1] = A[n];
         n--;
     }
     A[n + 1] = e;

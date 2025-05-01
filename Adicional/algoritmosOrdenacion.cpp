@@ -57,7 +57,7 @@ void insertionSort(int array[], int largo) {
 int main() {
     int array[] = {6, 2, 3, 7, 9, 10};
     imprimirArray(array, 6);
-    insertionSort(array, 6);
+    selectionSort(array, 6);
     imprimirArray(array, 6);
 
     return 0;

@@ -9,6 +9,6 @@ int factorial(int numero) {
 }
 
 int main() {
-    printf("El factorial de %d es %d", 5, factorial(5));
+    printf("El factorial de %d es %d", 5, factorial(6));
     return 0;
 }

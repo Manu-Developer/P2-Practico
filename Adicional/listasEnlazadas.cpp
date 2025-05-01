@@ -126,11 +126,11 @@ void removerElemento(nodo*& lista, int x) {
 }
 
 void eliminarTodos(nodo*& lista) {
-    nodo* auxiliar;
+    nodo* aBorrar = lista;
     while (lista != NULL) {
-        auxiliar = lista->siguiente;
-        delete lista;
-        lista = auxiliar;
+        lista = lista->siguiente;
+        delete aBorrar;
+        aBorrar = lista;
     }
 }
 

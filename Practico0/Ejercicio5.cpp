@@ -36,6 +36,25 @@ Punto crearPunto(int coordX, int coordY) {
     return p;
 }
 
+int menorCoordX(ColPuntos colPtos) {
+    int menorCoordX = coordX(colPtos.arregloPuntos[0]);
+
+    for (int i = 0; i < colPtos.cantidad; i++) {
+        if (coordX(colPtos.arregloPuntos[i]) < menorCoordX) {
+            menorCoordX = coordX(colPtos.arregloPuntos[i]);
+        }
+    }
+
+    return menorCoordX;
+}
+
+Punto puntoMedio(Punto pto1, Punto pto2) {
+    Punto ptoMedio;
+    ptoMedio.coordX = (coordX(pto1) + coordX(pto2)) / 2;
+    ptoMedio.coordY = (coordY(pto1) + coordY(pto2)) / 2;
+    return ptoMedio;
+}
+
 int main(int argc, char const *argv[]) {
     ColPuntos colPtos;
     colPtos.cantidad = 0;

@@ -15,9 +15,7 @@ bool esPalindrome(char *frase) {
 }
 
 int main() {
-    char *frase;
-
-    frase = new char;
+    char *frase = new char;
 
     printf("Ingresa la frase: ");
 
@@ -28,6 +26,8 @@ int main() {
     } else {
         printf("La palabra: %s NO es palindromo ", frase);
     }
+
+    delete[] frase;
 
     return 0;
 }
