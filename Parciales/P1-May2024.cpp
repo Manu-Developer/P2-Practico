@@ -7,6 +7,38 @@ struct nodoLista {
 
 typedef nodoLista* Lista;
 
+struct nodoABB {
+    int dato;
+    nodoABB* izq;
+    nodoABB* der;
+};
+
+typedef nodoABB* ABB;
+
+struct nodoAG {
+    int dato;
+    nodoAG* pH;
+    nodoAG* sH;
+};
+
+typedef nodoAG* AG;
+
+// Sea n la cantidad de nodos dentro del ABB.
+// El peor caso es O(n), ya que el camino al mínimo puede involucrar a todos los nodos del árbol (árbol degenerado hacia la izquierda). Sobre cada nodo las acciones involucradas son de O(1).
+// El caso promedio es O(log2(n)), ya que en promedio la altura del árbol es log2(n). Luego, el camino más hacia la izquierda tiene en promedio log2(n) nodos. Sobre cada nodo las acciones involucradas son de O(1).
+
+int delMin(ABB& t) {
+    if (t->izq == NULL) {
+        int menorElemento = t->dato;
+        ABB aBorrar = t;
+        t = t->der;
+        delete aBorrar;
+        return menorElemento;
+    } else {
+        delMin(t->izq);
+    }
+}
+
 int masVotada(Lista& l, int m) {
     int* arrayAux = new int[m + 1];
     for (int i = 0; i <= m; i++) {
@@ -29,6 +61,20 @@ int masVotada(Lista& l, int m) {
 
     delete[] arrayAux;
     return elementoMax;
+}
+
+int nivel(AG t, int x) {
+    if (t == NULL)
+        return 0;
+    else if (t->dato == x)
+        return 1;
+    else {
+        int resultado = nivel(t->pH, x);
+        if (resultado > 0)
+            return 1 + resultado;
+        else
+            return nivel(t->sH, x);
+    }
 }
 
 int main() {
