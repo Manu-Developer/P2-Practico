@@ -6,7 +6,7 @@ bool esPrimo(int numero) {
     }
 
     // Verificamos si el número es divisible por algún número entre 2 y la raíz cuadrada de 'numero'
-    for (int i = 2; i < numero; ++i) {
+    for (int i = 2; i < numero; i++) {
         if (numero % i == 0) {
             return false;  // Si es divisible por 'i', no es primo
         }

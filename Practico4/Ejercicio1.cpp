@@ -28,6 +28,53 @@ int promedio(lista l) {
     return promedio / contadorNodos;
 }
 
+void insertarOrdenado(int x, lista &l) {
+    lista nuevoNodo = new nodo;
+    nuevoNodo->elemento = x;
+
+    if (l == NULL || l->elemento >= x) {
+        nuevoNodo->siguiente = l;
+        l = nuevoNodo;
+    } else {
+        lista auxiliarLista = l;
+        while (auxiliarLista->siguiente != NULL && auxiliarLista->siguiente->elemento < x) {
+            auxiliarLista = auxiliarLista->siguiente;
+        }
+        nuevoNodo->siguiente = auxiliarLista->siguiente;
+        auxiliarLista->siguiente = nuevoNodo;
+    }
+}
+
+void insertarOrdenadoV2(int x, lista &l) {
+    if (l == NULL || l->elemento >= x) {
+        lista nuevo = new nodo;
+        nuevo->elemento = x;
+        nuevo->siguiente = l;
+        l = nuevo;
+    } else {
+        insertarOrdenadoV2(x, l->siguiente);
+    }
+}
+
+void insertarOrdenadoV3(int x, lista &l) {
+    lista nuevoNodo = new nodo;
+    nuevoNodo->elemento = x;
+    nuevoNodo->siguiente = NULL;
+
+    lista dummy = new nodo;
+    dummy->siguiente = l;
+    l = dummy;
+
+    while (l->siguiente != NULL && l->siguiente->elemento < x) {
+        l = l->siguiente;
+    }
+    nuevoNodo->siguiente = l->siguiente;
+    l->siguiente = nuevoNodo;
+
+    l = dummy->siguiente;
+    delete dummy;
+}
+
 void insertarFinal(lista &l, int x) {
     lista nuevoNodo = new nodo;
     nuevoNodo->elemento = x;
@@ -65,62 +112,6 @@ void removerOcurrencias(lista &l, int x) {
     }
 }
 
-bool esListaVacia(lista l) {
-    return l == NULL;
-}
-
-void imprimirLista(lista l) {
-    if (l == NULL) {
-        printf("Lista vacia\n");
-        return;
-    }
-
-    printf("Lista: ");
-
-    while (l != NULL) {
-        printf("%d ", l->elemento);
-        l = l->siguiente;
-    }
-
-    printf("\n");
-}
-
-void insertarOrdenado(int x, lista &l) {
-    lista nuevoNodo = new nodo;
-    nuevoNodo->elemento = x;
-
-    if (l == NULL || l->elemento >= x) {
-        nuevoNodo->siguiente = l;
-        l = nuevoNodo;
-    } else {
-        lista auxiliarLista = l;
-        while (auxiliarLista->siguiente != NULL && auxiliarLista->siguiente->elemento < x) {
-            auxiliarLista = auxiliarLista->siguiente;
-        }
-        nuevoNodo->siguiente = auxiliarLista->siguiente;
-        auxiliarLista->siguiente = nuevoNodo;
-    }
-}
-
-void insertarOrdenadoV3(int x, lista &l) {
-    lista nuevoNodo = new nodo;
-    nuevoNodo->elemento = x;
-    nuevoNodo->siguiente = NULL;
-
-    lista dummy = new nodo;
-    dummy->siguiente = l;
-    l = dummy;
-
-    while (l->siguiente != NULL && l->siguiente->elemento < x) {
-        l = l->siguiente;
-    }
-    nuevoNodo->siguiente = l->siguiente;
-    l->siguiente = nuevoNodo;
-
-    l = dummy->siguiente;
-    delete dummy;
-}
-
 bool esSubLista(lista l, lista p) {
     bool estaInculido = false;
     if (l == NULL) {
@@ -149,6 +140,26 @@ bool esSubLista(lista l, lista p) {
         }
     }
     return estaInculido;
+}
+
+bool esListaVacia(lista l) {
+    return l == NULL;
+}
+
+void imprimirLista(lista l) {
+    if (l == NULL) {
+        printf("Lista vacia\n");
+        return;
+    }
+
+    printf("Lista: ");
+
+    while (l != NULL) {
+        printf("%d ", l->elemento);
+        l = l->siguiente;
+    }
+
+    printf("\n");
 }
 
 int main() {
