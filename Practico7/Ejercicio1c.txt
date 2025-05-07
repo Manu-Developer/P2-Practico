@@ -1,0 +1,4 @@
+¿Qué cambios realizaría en la especificación si se pidiera especificar el TAD Lista ordenada?
+
+// Inserta el entero x al principio de la lista, ORDENADAMENTE.
+void insertar(int x, LEnt& l);

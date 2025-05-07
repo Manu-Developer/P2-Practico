@@ -60,6 +60,19 @@ void insertar(AG &arbol, int hermano, int padre) {
     }
 }
 
+void insertarV2(AG arbol, int hermano, int padre) {
+    if (!pertenece(arbol, hermano)) {
+        arbol = buscar(arbol, padre);
+        if (arbol != NULL) {
+            AG nuevoNodo = new nodoAG;
+            nuevoNodo->dato = hermano;
+            nuevoNodo->pH = NULL;
+            nuevoNodo->sH = arbol->pH;
+            arbol->pH = nuevoNodo;
+        }
+    }
+}
+
 void borrar(AG &arbol, int x) {
     if (arbol == NULL || arbol->dato == x) return;  // No borrar si es NULL o raíz
 
@@ -84,6 +97,53 @@ void borrar(AG &arbol, int x) {
         }
         delete actual;
     }
+}
+
+bool borrarAux(AG &arbol, int x) {
+    if (arbol == NULL)
+        return false;
+    else {
+        if (arbol->dato == x) {
+            if (esArbolHoja(arbol)) {
+                delete arbol;
+                arbol = NULL;
+            }
+            return true;
+        } else
+            return borrarAux(arbol->pH, x) || borrarAux(arbol->sH, x);
+    }
+}
+
+void borrarV2(AG arbol, int x) {
+    if (arbol != NULL && arbol->dato != x)
+        borrarAux(arbol, x);
+}
+
+void borrarArbol(AG &arbol) {
+    borrarArbol(arbol->pH);
+    borrarArbol(arbol->sH);
+    delete arbol;
+    arbol = NULL;
+}
+
+bool borrarSubAux(AG &arbol, int x) {
+    if (arbol == NULL)
+        return false;
+    else {
+        if (arbol->dato == x) {
+            AG aux = arbol;
+            arbol = arbol->sH;
+            aux->sH = NULL;
+            borrarArbol(aux);
+            return true;
+        } else
+            return borrarSubAux(arbol->pH, x) || borrarSubAux(arbol->sH, x);
+    }
+}
+
+void borrarSub(AG ag, int x) {
+    if (ag != NULL && ag->dato != x)
+        borrarSubAux(ag, x);
 }
 
 int main() {

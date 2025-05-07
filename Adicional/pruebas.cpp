@@ -1,72 +1,95 @@
 #include <stdio.h>
 
-struct nodoLista {
-    int persona;
-    nodoLista* sig;
+struct nodo {
+    int dato;
+    nodo* izq;
+    nodo* der;
 };
 
-typedef nodoLista* Lista;
+struct nodo2 {
+    int dato;
+    nodo2* sig;
+};
 
-int masVotada(Lista& l, int m) {
-    int* arrayAux = new int[m + 1];
-    for (int i = 0; i <= m; i++) {
-        arrayAux[i] = 0;
+typedef nodo* AB;
+typedef nodo2* lista;
+
+void insertar(lista& l, int x) {
+    if (l == NULL || l->dato != x) {
+        lista nuevoNodo = new nodo2;
+        nuevoNodo->dato = x;
+        nuevoNodo->sig = l;
+        l = nuevoNodo;
     }
+}
 
-    while (l != NULL) {
-        arrayAux[l->persona]++;
-        Lista aBorrar = l;
-        l = l->sig;
-        delete aBorrar;
-    }
+lista intercalar(int* array1, int* array2, int n, int m) {
+    // n es el largo del array1 y m es el largo del array2
 
-    int elementoMax = arrayAux[0];
-    for (int i = 0; i < m + 1; i++) {
-        if (arrayAux[i] > elementoMax) {
-            elementoMax = arrayAux[i];
+    lista resultado = NULL;
+
+    while (n > 0 && m > 0) {
+        if (array1[n - 1] >= array2[m - 1]) {
+            insertar(resultado, array1[n - 1]);
+            n--;
+        } else {
+            insertar(resultado, array2[m - 1]);
+            m--;
         }
     }
 
-    delete[] arrayAux;
-    return elementoMax;
+    while (n > 0) {
+        insertar(resultado, array1[n - 1]);
+        n--;
+    }
+
+    while (m > 0) {
+        insertar(resultado, array2[m - 1]);
+        m--;
+    }
+
+    return resultado;
+}
+
+void imprimirLista(lista l) {
+    while (l != NULL) {
+        printf("%d ", l->dato);
+        l = l->sig;
+    }
+    printf("\n");
+}
+
+AB copiaRec(AB t) {
+    if (t == NULL)
+        return NULL;
+    else {
+        AB copia = new nodo;
+        copia->dato = t->dato;
+        copia->der = copiaRec(t->der);
+        copia->izq = copiaRec(t->izq);
+        return copia;
+    }
+}
+
+AB copiaSubArbol(AB t, int x) {
+    if (t == NULL) return NULL;
+    AB resultado = NULL;
+
+    if (t->dato == x) {
+        resultado = copiaRec(t);
+        return resultado;
+    } else if (copiaSubArbol(t->izq, x) != NULL) {
+        return copiaSubArbol(t->izq, x);
+    } else {
+        return copiaSubArbol(t->der, x);
+    }
 }
 
 int main() {
-    Lista l1 = new nodoLista;
-    l1->persona = 1;
-    Lista l2 = new nodoLista;
-    l2->persona = 4;
-    Lista l3 = new nodoLista;
-    l3->persona = 2;
-    Lista l4 = new nodoLista;
-    l4->persona = 4;
-    Lista l5 = new nodoLista;
-    l5->persona = 2;
-    Lista l6 = new nodoLista;
-    l6->persona = 2;
-    Lista l7 = new nodoLista;
-    l7->persona = 3;
-    Lista l8 = new nodoLista;
-    l8->persona = 2;
-    Lista l9 = new nodoLista;
-    l9->persona = 8;
-    Lista l10 = new nodoLista;
-    l10->persona = 2;
+    int array1[] = {2, 4, 4, 4, 6, 7, 9, 10, 11, 13, 15};
+    int array2[] = {1, 2, 3, 4, 8, 8, 13, 22};
 
-    l1->sig = l2;
-    l2->sig = l3;
-    l3->sig = l4;
-    l4->sig = l5;
-    l5->sig = l6;
-    l6->sig = l7;
-    l7->sig = l8;
-    l8->sig = l9;
-    l9->sig = l10;
-    l10->sig = NULL;
-
-    int m = 9;  // valor máximo posible en la lista
-    int votosMax = masVotada(l1, m);
-    printf("%d", votosMax);
-
+    lista prueba = intercalar(array1, array2, 11, 8);
+    imprimirLista(prueba);
     return 0;
 }
