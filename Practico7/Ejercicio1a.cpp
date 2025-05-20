@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 
+#include <cassert>
+
 struct nodo {
     int elemento;
     nodo* sig;
@@ -24,15 +26,20 @@ bool esVacia(LEnt l) {
 }
 
 int primero(LEnt l) {
-    if (!esVacia(l)) {
-        return l->elemento;
-    }
+    return l->elemento;
 }
 
 void resto(LEnt& l) {
-    if (!esVacia(l)) {
-        LEnt aBorrar = l;
-        l = l->sig;
-        delete aBorrar;
-    }
+    assert(!esVacia(l));
+    LEnt aBorrar = l;
+    l = l->sig;
+    delete aBorrar;
+}
+
+int main() {
+    LEnt listaNueva = crearL();
+    insertar(10, listaNueva);
+    insertar(20, listaNueva);
+    insertar(30, listaNueva);
+    printf("%d", primero(listaNueva));
 }

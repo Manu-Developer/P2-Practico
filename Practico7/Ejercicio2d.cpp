@@ -2,7 +2,7 @@
 
 #include "../Practico7/Ejercicio2c.h"
 
-struct rep_cola {
+struct arrayCircular {
     int *array;
     int principio;
     int fin;
@@ -11,10 +11,10 @@ struct rep_cola {
 };
 
 Cola crearCola(int cota) {
-    Cola colaVacia = new rep_cola;
+    Cola colaVacia = new arrayCircular;
     colaVacia->array = new int[cota];
     colaVacia->principio = 0;
-    colaVacia->fin = 0;
+    colaVacia->fin = cota - 1;
     colaVacia->cantidad = 0;
     colaVacia->cota = cota;
     return colaVacia;
@@ -29,9 +29,7 @@ bool esLlenaCola(Cola c) {
 }
 
 int frente(Cola c) {
-    if (!esVaciaCola(c)) {
-        return c->array[c->principio];
-    }
+    return c->array[c->principio];
 }
 
 void encolar(int t, Cola &c) {
@@ -47,6 +45,12 @@ void encolar(int t, Cola &c) {
     }
 }
 
+void encolarV2(int t, Cola &c) {
+    c->fin = (c->fin + 1) % c->cota;
+    c->array[c->fin] = t;
+    c->cantidad++;
+}
+
 void desencolar(Cola &c) {
     if (!esVaciaCola(c)) {
         c->principio++;
@@ -59,7 +63,13 @@ void desencolar(Cola &c) {
     }
 }
 
-// Existe una forma de destruir una cola en O(1)?
+void desencolarV2(int t, Cola &c) {
+    if (c->cantidad != 0) {
+        c->principio = (c->principio + 1) % c->cota;
+        c->cantidad--;
+    }
+}
+
 void destruirCola(Cola &c) {
     delete[] c->array;
     delete c;

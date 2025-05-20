@@ -24,9 +24,7 @@ bool esVaciaCola(Cola c) {
 }
 
 int frente(Cola c) {
-    if (!esVaciaCola(c)) {
-        return c->inicio->elemento;
-    }
+    return c->inicio->elemento;
 }
 
 void encolar(int t, Cola &c) {
@@ -44,20 +42,54 @@ void encolar(int t, Cola &c) {
 }
 
 void desencolar(Cola &c) {
-    if (!esVaciaCola(c)) {
+    if (c->inicio != NULL) {
         nodoQ *aBorrar = c->inicio;
         c->inicio = c->inicio->sig;
         if (c->inicio == NULL) {
-            c->final == NULL;
+            c->final = NULL;
         }
         delete aBorrar;
     }
 }
 
-// Existe una forma de destruir una cola en O(1)?
+// Destruir cola siempre es en O(n)
 void destruirCola(Cola &c) {
     while (!esVaciaCola(c)) {
         desencolar(c);
     }
     delete c;
+}
+
+void destruirColaV2(Cola &c) {
+    while (c->inicio != NULL) {
+        nodoQ *aux = c->inicio;
+        c->inicio = c->inicio->sig;
+        delete aux;
+    }
+    delete c;
+}
+
+void imprimirCola(Cola c) {
+    nodoQ *actual = c->inicio;
+    printf("Cola: ");
+    while (actual != NULL) {
+        printf("%d ", actual->elemento);
+        actual = actual->sig;
+    }
+    printf("\n");
+}
+
+int main() {
+    Cola colaNueva = colaVacia();
+    encolar(1, colaNueva);
+    encolar(2, colaNueva);
+    encolar(3, colaNueva);
+    encolar(4, colaNueva);
+    encolar(5, colaNueva);
+    printf("Elemento del frente: %d\n", frente(colaNueva));
+    imprimirCola(colaNueva);
+    desencolar(colaNueva);
+    imprimirCola(colaNueva);
+    destruirColaV2(colaNueva);
+    imprimirCola(colaNueva);
 }

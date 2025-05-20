@@ -1,13 +1,17 @@
 #ifndef COLA_H
 #define COLA_H
 
-typedef struct cabezal *Cola;
+struct arrayCircular;
+typedef struct arrayCircular *Cola;
 
 // Devuelve la cola vacia.
-Cola colaVacia();
+Cola crearCola(int cota);
 
 // Devuelve 'true' si c es vacia, 'false' en otro caso.
 bool esVaciaCola(Cola c);
+
+// Devuelve true si la cola esta llena
+bool estaLlenaCola(Cola c);
 
 // Devuelve el primer elemento de c.
 // Precondicion : !esVaciaCola(c).

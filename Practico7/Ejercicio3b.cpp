@@ -24,15 +24,11 @@ bool esVaciaDeque(Deque c) {
 }
 
 int inicio(Deque c) {
-    if (!esVaciaDeque(c)) {
-        return c->inicio->elemento;
-    }
+    return c->inicio->elemento;
 }
 
 int final(Deque c) {
-    if (!esVaciaDeque(c)) {
-        return c->final->elemento;
-    }
+    return c->final->elemento;
 }
 
 void insertar_inicio(int t, Deque &c) {
@@ -89,4 +85,26 @@ void eliminar_final(Deque &c) {
             c->final->sig = NULL;
         }
     }
+}
+
+void imprimirDeque(Deque c) {
+    nodoQ *actual = c->inicio;
+    printf("Cola: ");
+    while (actual != NULL) {
+        printf("%d ", actual->elemento);
+        actual = actual->sig;
+    }
+    printf("\n");
+}
+
+int main() {
+    Deque dequeNueva = dequeVacia();
+    insertar_inicio(1, dequeNueva);
+    insertar_inicio(2, dequeNueva);
+    insertar_inicio(3, dequeNueva);
+    insertar_inicio(4, dequeNueva);
+    insertar_final(5, dequeNueva);
+    eliminar_inicio(dequeNueva);
+    eliminar_final(dequeNueva);
+    imprimirDeque(dequeNueva);
 }

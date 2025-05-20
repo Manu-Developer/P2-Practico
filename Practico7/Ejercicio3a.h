@@ -1,6 +1,7 @@
 #ifndef DEQUE_H
 #define DEQUE_H
 
+struct cabezal;
 typedef struct cabezal *Deque;
 
 // Devuelve una deque vacia.
