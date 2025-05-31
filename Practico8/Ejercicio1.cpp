@@ -27,8 +27,8 @@ conjunto crearConjunto(int cota) {
     return c;
 }
 
-bool perteneceConjunto(int i, conjunto c) {
-    nodoHash* lista = c->tabla[hash(i) % (c->cota)];
+bool pertenece(int i, conjunto c) {
+    nodoHash* lista = c->tabla[hash(i) % (c->cota)];  // int posicion = hash(i) % (c->cota)
 
     while (lista != NULL && lista->dato != i) {
         lista = lista->sig;
@@ -37,18 +37,39 @@ bool perteneceConjunto(int i, conjunto c) {
     return lista != NULL;
 }
 
-void insertarConjunto(int i, conjunto& c) {
-    if (!perteneceConjunto(i, c)) {
-        nodoHash* nuevo = new nodoHash;
-        nuevo->dato = i;
-        nuevo->sig = c->tabla[hash(i) % (c->cota)];
-        c->tabla[hash(i) % (c->cota)] = nuevo;
-        c->cantidad++;
+void insertar(int i, conjunto& c) {
+    nodoHash* nuevo = new nodoHash;
+    nuevo->dato = i;
+    nuevo->sig = c->tabla[hash(i) % (c->cota)];
+    c->tabla[hash(i) % (c->cota)] = nuevo;
+    c->cantidad++;
+}
+
+void eliminar(int i, conjunto& c) {
+    int posicion = hash(i) % (c->cota);
+    while (c->tabla[posicion] != NULL && c->tabla[posicion]->dato == i) {
+        nodoHash* aBorrar = c->tabla[posicion];
+        c->tabla[posicion] = c->tabla[posicion]->sig;
+        delete aBorrar;
+    }
+
+    nodoHash* lista = c->tabla[posicion];
+
+    if (lista != NULL) {
+        while (lista->sig != NULL) {
+            if (lista->sig->dato == i) {
+                nodoHash* aBorrar = lista->sig;
+                lista->sig = lista->sig->sig;
+                delete aBorrar;
+            } else {
+                lista = lista->sig;
+            }
+        }
     }
 }
 
-void eliminarConjunto(int i, conjunto& c) {
-    if (perteneceConjunto(i, c)) {
+void eliminarV2(int i, conjunto& c) {
+    if (pertenece(i, c)) {
         int posicion = hash(i) % c->cota;
         nodoHash* actual = c->tabla[posicion];
         nodoHash* anterior = NULL;
@@ -89,7 +110,7 @@ bool esLlenoConjunto(conjunto c) {  // La funcion tambien se puede llamar todasL
 
 void destruirConjunto(conjunto& c) {
     for (int i = 0; i < c->cantidad; i++) {
-        eliminarConjunto(i, c);
+        eliminar(i, c);
     }
     delete[] c->tabla;
     delete c;

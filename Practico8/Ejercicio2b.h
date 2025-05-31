@@ -28,7 +28,7 @@ void insertarElemento(conjunto &c, int x);
 
 // Elimina a x de c si estaba. En caso contrario, no tiene efecto.
 // Pre: 0<=x<=cota (con cota el valor del parámetro en la creación)
-void eliminarConjunto(conjunto &c, int x);
+void eliminarElemento(conjunto &c, int x);
 
 // Elimina la memoria asociada al conjunto c.
 void destruirConjunto(conjunto &c);

@@ -7,6 +7,9 @@
 		"cmath": "cpp",
 		"iostream": "cpp",
 		"random": "cpp",
-		"string": "cpp"
+		"string": "cpp",
+		"cstring": "cpp",
+		"new": "cpp",
+		"limits": "cpp"
 	}
 }

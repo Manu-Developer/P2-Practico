@@ -1,0 +1,21 @@
+-Analice el orden del tiempo de ejecución de las operaciones del TAD tabla implementado mediante una tabla de dispersión abierta. Compare el orden del tiempo de ejecución de cada operación con implementaciones alternativas.
+
+crearTabla: O(n) pues tiene que inicializar cada una de las entradas de la tablaHash.
+
+esVaciaTabla: O(1) pues solo verifica si elementosActuales == 0, una comparación directa.
+
+estaLlenaTabla: O(1) pues solo compara elementosActuales == elementosEsperados.
+
+insertarTabla: O(1) pues tiene que primero acceder a la posicion de un arreglo y luego insertar al inicio de una lista simplemente encadenada lo cual es tambien O(1).
+
+En el peor caso: O(n) (si todos los elementos colisionan en una sola lista).
+
+eliminarTabla: O(1) pues tiene que primero acceder a la posicion de un arreglo y luego eliminar al inicio de una lista simplemente encadenada lo cual es tambien O(1) (se asume que la distribucion de los elementos es apropiada y el largo de cada lista es 1).
+
+En el peor caso: O(n) si todas las claves colisionan.
+
+perteneceTabla: O(1) pues tiene que primero acceder a la posicion de un arreglo y luego buscar en una lista simplemente encadenada lo cual es tambien O(1) (se asume que la distribucion de los elementos es apropiada y el largo de cada lista es 1).
+
+destruirTabla: O(n+m) pues se recorren las n posiciones del arreglo, pero además, se recorre cada lista para liberar los nodos, lo cual depende del número total de elementos m.
+
+Las implementaciones alternativas se discutieron en el Practico 8, Ejercicio 7.

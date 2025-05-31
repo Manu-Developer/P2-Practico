@@ -34,7 +34,7 @@ void insertarElemento(conjunto &c, int x) {
     }
 }
 
-void eliminarConjunto(conjunto &c, int x) {
+void eliminarElemento(conjunto &c, int x) {
     if (c->elementos[x] == true) {
         c->elementos[x] = false;
         c->cantidad--;

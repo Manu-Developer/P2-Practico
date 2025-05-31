@@ -96,7 +96,7 @@ lista interseccionListas(lista l1, lista l2) {
 
     for (int i = 0; i <= cota; i++) {
         if (pertenece(l1_conjunto, i) && pertenece(l2_conjunto, i)) {
-            insertar(resultado, i);  // Inserta al principio
+            insertar(resultado, i);  // Inserta al principio de la lista resultado
         }
     }
 

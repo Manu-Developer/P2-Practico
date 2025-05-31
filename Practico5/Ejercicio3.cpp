@@ -9,10 +9,10 @@ typedef nodoABB *ABB;
 
 void insertarABB(ABB &arbol, int n) {
     if (arbol == NULL) {
-        ABB nuevoNodo = new nodoABB;
-        nuevoNodo->elem = n;
-        nuevoNodo->der = NULL;
-        nuevoNodo->izq = NULL;
+        arbol = new nodoABB;
+        arbol->elem = n;
+        arbol->der = NULL;
+        arbol->izq = NULL;
     } else if (n < arbol->elem) {
         insertarABB(arbol->izq, n);
     } else {

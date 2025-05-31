@@ -8,13 +8,13 @@ typedef rep_conjunto *conjunto;
 conjunto crearConjunto(int cota);
 
 // Agrega i en c, si no estaba. En caso contrario, no tiene efecto.
-void insertarConjunto(int i, conjunto &c);
+void insertar(int i, conjunto &c);
 
 // Elimina i de c, si estaba. En caso contrario, no tiene efecto.
-void eliminarConjunto(int i, conjunto &c);
+void eliminar(int i, conjunto &c);
 
 // Devuelve true si y sólo si i está en c.
-bool perteneceConjunto(int i, conjunto c);
+bool pertenece(int i, conjunto c);
 
 // Devuelve true si y sólo si c es vacío.
 bool esVacioConjunto(conjunto c);
