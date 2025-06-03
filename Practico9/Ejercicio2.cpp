@@ -24,14 +24,14 @@ lista crearLista() {
     return nuevaLista;
 }
 
-void insertarLista(lista& l, char* caracteres) {
+void insertarString(lista& l, char* caracteres) {
     nodoLista* nuevoNodo = new nodoLista;
     nuevoNodo->caracteres = caracteres;
     nuevoNodo->sig = l;
     l = nuevoNodo;
 }
 
-void eliminarLista(lista& l, char* caracteres) {
+void eliminarString(lista& l, char* caracteres) {
 }
 
 int funcionHash(char* caracteres, int largoTabla) {
@@ -99,7 +99,7 @@ void eliminarTabla(tabla& t, char* caracteres) {
     }
 }
 
-bool perteneceTabla(tabla t, char* caracteres) {
+bool perteneceString(tabla t, char* caracteres) {
     int indiceHash = funcionHash(caracteres, t->elementosEsperados);
     nodoHash* lista = t->tabla[indiceHash];
 
@@ -137,13 +137,13 @@ int main() {
     insertarTabla(t, (char*)"tabla");
     insertarTabla(t, (char*)"prueba");
 
-    printf("Pertenece 'mundo'? %s\n", perteneceTabla(t, (char*)"mundo") ? "Si" : "No");
-    printf("Pertenece 'python'? %s\n", perteneceTabla(t, (char*)"python") ? "Si" : "No");
+    printf("Pertenece 'mundo'? %s\n", perteneceString(t, (char*)"mundo") ? "Si" : "No");
+    printf("Pertenece 'python'? %s\n", perteneceString(t, (char*)"python") ? "Si" : "No");
 
     printf("Eliminando 'mundo'...\n");
     eliminarTabla(t, (char*)"mundo");
 
-    printf("Pertenece 'mundo'? %s\n", perteneceTabla(t, (char*)"mundo") ? "Si" : "No");
+    printf("Pertenece 'mundo'? %s\n", perteneceString(t, (char*)"mundo") ? "Si" : "No");
 
     printf("Esta llena la tabla? %s\n", estaLlenaTabla(t) ? "Si" : "No");
 

@@ -29,14 +29,14 @@ bool esVaciaTabla(tabla t);
 bool estaLlenaTabla(tabla t);
 
 // Inserta en la tabla 't' el string caracteres.
-void insertarTabla(tabla& t, char* caracteres);
+void insertarString(tabla& t, char* caracteres);
 
 // Elimina en la tabla 't' el string caracteres.
 // Pre: perteneceTabla(t, caracteres)=true
-void eliminarTabla(tabla& t, char* caracteres);
+void eliminarString(tabla& t, char* caracteres);
 
 // Retorna 'true' si y solo si el string caracteres se encuentra en la tabla 't', 'false' en caso contrario.
-bool perteneceTabla(tabla t, char* caracteres);
+bool perteneceString(tabla t, char* caracteres);
 
 // Elimina toda la memoria ocupada por la tabla 't'.
 void destruirTabla(tabla& t);

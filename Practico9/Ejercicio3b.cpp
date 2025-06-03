@@ -4,13 +4,6 @@
 
 // Podria ser un AVL, pero la complejidad de este ejercicio de Examen seria excesiva.
 
-struct nodoArbol {
-    int dominio;
-    float codominio;
-    nodoArbol* izq;
-    nodoArbol* der;
-};
-
 arbol crearArbol() {
     arbol nuevoArbol = NULL;
     return nuevoArbol;

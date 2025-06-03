@@ -1,0 +1,4 @@
+Un arbol binario debe de cumplir las siguientes propiedades para ser un heap:
+
+1- Propiedad de estructura: El arbol binario debe de ser completamente lleno admitiendo la excepcion del nivel mas bajo, el cual se llena de izquierda a derecha.
+2- El nodo padre debe de tener una prioridad menor que las de sus hijos.

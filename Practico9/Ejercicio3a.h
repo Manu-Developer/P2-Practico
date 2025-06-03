@@ -1,7 +1,13 @@
 #ifndef EJ_3A
 #define EJ_3A
 
-struct nodoArbol;
+struct nodoArbol {
+    int dominio;
+    float codominio;
+    nodoArbol* izq;
+    nodoArbol* der;
+};
+
 typedef struct nodoArbol* arbol;
 
 // Crea y retorna un nuevo arbol vacio.

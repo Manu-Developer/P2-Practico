@@ -18,16 +18,16 @@ int cantidadElementosTabla(tabla t);
 
 // Agrega la correspondencia (d,r) en t, si d no tenia imagen en t.
 // Pre: ¿'d' debe estar en el rango [0...cota-1]?
-void insertarTabla(int d, int r, tabla &t);
+void insertarElemento(int d, int r, tabla &t);
 
 // // Devuelve true si y sólo si d tiene imagen en t, false en caso contrario.
-bool estaDefinidaTabla(int d, tabla t);
+bool estaDefinidoElemento(int d, tabla t);
 
 // Elimina 'T(d)' si es que estaba previamente definido, en caso de no estarlo la funcion no tiene efecto.
-void eliminarTabla(int d, tabla &t);
+void eliminarElemento(int d, tabla &t);
 
 // Retorna la imagen de d en t.
 // Pre: estaDefinidaTabla(d,t).
-int recuperarTabla(int d, tabla t);
+int recuperarElemento(int d, tabla t);
 
 #endif

@@ -1,0 +1,10 @@
+- La funcion Asociar es O(1) peor caso ya que siempre insertamos al inicio de una lista encadenada sin importar su largo.
+void Asociar(int x, int y, grafica& g);
+
+- La funcion valor es O(1) promedio considerando que la distribucion de claves mediante la funcion hash es apropiada y distribuye uniformemente.
+De esta manera, para obtener el valor de un 'x' tendriamos que solo recorrer una lista de largo 1.
+int Valor(int x, grafica g);
+
+-La funcion valor es O(1) promedio considerando que la distribucion de claves mediante la funcion hash es apropiada y distribuye uniformemente.
+De esta manera, para eliminar el valor de un 'x' tendriamos que solo recorrer una lista de largo 1.
+void Desasociar(int x, grafica& g);

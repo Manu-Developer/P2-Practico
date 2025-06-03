@@ -1,0 +1,31 @@
+Explique como implementar colas de prioridad no acotadas para que se cumplan los siguientes tiempos de ejecución en el peor caso.
+
+1) Insertar y obtener el prioritario en O(1).
+
+- Se puede implementar usando una lista simplemente enlazada o doblemente enlazada, manteniendo un cabezal con puntero adicional al elemento de mayor prioridad.
+
+Insertar O(1): Se inserta al principio de la lista (costo constante). Si la nueva prioridad es mejor que la actual, se actualiza el puntero al prioritario.
+
+Obtener el prioritario O(1): Simplemente se retorna el elemento apuntado por el puntero al prioritario.
+
+- Justificación:
+
+Mantener un puntero al elemento de máxima prioridad permite obtenerlo en O(1).
+
+Insertar es constante, si se hace en cabeza o cola y se actualiza el puntero si corresponde.
+
+2) Insertar y eliminar el prioritario en O(log n); obtener el prioritario en O(1).
+
+- Se puede implementar un montículo binario (heap), que es un árbol binario completo representado en un arreglo
+
+Insertar y eliminar Olog(n): Insertar y eliminar requieren reorganizar el heap para mantener su invariante (heapify), lo que toma O(log n).
+
+Obtener el prioritario (O(1)): Se accede directamente a la raíz del heap.
+
+- Justificación:
+
+El heap está balanceado, con altura O(log n), por eso insertar y eliminar implican un número de comparaciones proporcional al logaritmo del tamaño.
+
+Obtener el prioritario es inmediato porque podemos acceder directamente a arrayHeap[1].
+
+*** En otras operaciones (buscar, modificar) toma O(n) con ambas estructuras.

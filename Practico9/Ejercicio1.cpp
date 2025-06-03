@@ -17,7 +17,7 @@ bool esVaciaTabla(tabla t) {
     return t == NULL;
 }
 
-void insertarTabla(int d, int r, tabla& t) {
+void insertarElemento(int d, int r, tabla& t) {
     tabla actual = t;
 
     while (actual != NULL) {
@@ -37,14 +37,14 @@ void insertarTabla(int d, int r, tabla& t) {
     t = nuevo;
 }
 
-bool estaDefinidaTabla(int d, tabla t) {
+bool estaDefinidoElemento(int d, tabla t) {
     while (t != NULL && t->d != d) {
         t = t->sig;
     }
     return t != NULL;
 }
 
-void eliminarTabla(int d, tabla& t) {
+void eliminarElemento(int d, tabla& t) {
     // Caso especial: si el nodo a eliminar está al principio
     if (t != NULL && t->d == d) {
         tabla aBorrar = t;
@@ -66,7 +66,7 @@ void eliminarTabla(int d, tabla& t) {
     }
 }
 
-int recuperarTabla(int d, tabla t) {
+int recuperarElemento(int d, tabla t) {
     while (t != NULL) {
         if (t->d == d) {
             return t->r;

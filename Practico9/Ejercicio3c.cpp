@@ -4,13 +4,6 @@
 
 // Podria ser un AVL, pero la complejidad de este ejercicio de Examen seria excesiva.
 
-struct nodoArbol {
-    int dominio;
-    float codominio;
-    nodoArbol* izq;
-    nodoArbol* der;
-};
-
 struct tabla {
     arbol nodoRaiz;
     int cantidadElementos;
@@ -18,7 +11,7 @@ struct tabla {
 
 typedef struct tabla* tablaRaiz;
 
-tablaRaiz crearTablaASD() {
+tablaRaiz crearTabla() {
     tablaRaiz nuevaTabla = new tabla;
     nuevaTabla->cantidadElementos = 0;
     nuevaTabla->nodoRaiz = NULL;
