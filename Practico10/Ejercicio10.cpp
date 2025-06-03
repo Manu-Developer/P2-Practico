@@ -17,35 +17,35 @@ colaImpresora crearCola() {
     return nuevaCI;
 }
 
-bool esColaVacia(colaImpresora cp) {
-    return cp->aImprimir = 0;
+bool esColaVacia(colaImpresora ci) {
+    return ci->aImprimir = 0;
 }
 
-void insertarElemento(colaImpresora &cp, char *string, int prioridad) {
-    encolarColaString(string, cp->colas[prioridad]);
+void insertarElemento(colaImpresora &ci, char *string, int prioridad) {
+    encolarColaString(string, ci->colas[prioridad]);
 
-    if (prioridad > cp->aImprimir) {
-        cp->aImprimir = prioridad;
+    if (prioridad > ci->aImprimir) {
+        ci->aImprimir = prioridad;
     }
 }
 
-char *imprimir(colaImpresora &cp) {
-    int maxPrioridad = cp->aImprimir;
-    char *texto = frenteColaString(cp->colas[maxPrioridad]);
-    desencolarColaString(cp->colas[maxPrioridad]);
+char *imprimir(colaImpresora &ci) {
+    int maxPrioridad = ci->aImprimir;
+    char *texto = frenteColaString(ci->colas[maxPrioridad]);
+    desencolarColaString(ci->colas[maxPrioridad]);
 
-    while (esColaVacia(cp->colas[maxPrioridad] && maxPrioridad > 0)) {
+    while (esColaVacia(ci->colas[maxPrioridad] && maxPrioridad > 0)) {
         maxPrioridad--;
     }
 
     return texto;
 }
 
-void destruir(colaImpresora &cp) {
+void destruir(colaImpresora &ccip) {
     for (int i = 0; i <= K; i++) {
-        destruirColaString(cp->colas[i]);
+        destruirColaString(ci->colas[i]);
     }
-    delete[] cp->colas;
-    delete cp;
-    cp = NULL;
+    delete[] ci->colas;
+    delete ci;
+    ci = NULL;
 }
