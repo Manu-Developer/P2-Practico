@@ -4,19 +4,21 @@
 struct nodoTabla;
 typedef struct nodoTabla *tabla;
 
-// Crea una tabla vacia no acotada.
+// Crea y retorna una tabla vacia no acotada.
 tabla crearTablaVacia();
 
-// Devuelve 'true' si y solo si la tabla 't' es vacia, false en caso contrario.
+// Devuelve 'true' si y solo si la tabla t es vacia, false en caso contrario.
 bool esVaciaTabla(tabla t);
 
-// Agrega la correspondencia (d,r) en t, si d no tenia imagen en t.
+// Inserta el par (d,r) en t.
+// Si el valor d ya estaba definido, lo actualiza.
 void insertarElemento(int d, int r, tabla &t);
 
-// // Devuelve true si y sólo si d tiene imagen en t, false en caso contrario.
+// Devuelve true si y sólo si d tiene imagen en t, false en caso contrario.
 bool estaDefinidoElemento(int d, tabla t);
 
-// Elimina 'T(d)' si es que estaba previamente definido, en caso de no estarlo la funcion no tiene efecto.
+// Elimina el elemento asociado a d en la tabla t.
+// Pre: estaDefinidaTabla(d,t).
 void eliminarElemento(int d, tabla &t);
 
 // Retorna la imagen de d en t.

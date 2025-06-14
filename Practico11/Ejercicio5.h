@@ -1,15 +1,18 @@
-#ifndef EJ_7A
-#define EJ_7A
+#ifndef EJ_5
+#define EJ_5
 
 struct TInfo;
 struct nodoCP;
 typedef struct nodoCP *colaP;
 
-// Crea y retorna una nueva cola de prioridad vacia que podra contener elementos de tipo int.
+// Crea y retorna una nueva cola de prioridad vacia.
 colaP crearColaPrioridadVacia();
 
-// Inserta el elemento 'x' con una prioridad en 'cp'.
-void insertarElemento(colaP &cp, int x, int prioridad);
+// Inserta el elemento con una prioridad en 'cp'.
+// Si dos elementos tienen igual prioridad en la cola de prioridad, se respeta la política FIFO.
+// Pre: prioridad >= 0
+
+void insertarElemento(colaP &cp, int elemento, int prioridad);
 
 // Retorna 'true' si y solo si la cola de prioridad 'cp' es vacia. En caso contrario retorna 'false'.
 bool esColaVacia(colaP cp);

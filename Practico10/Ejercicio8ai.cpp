@@ -2,9 +2,13 @@
 
 #include "../Practico10/Ejercicio7.h"
 
-struct nodoCP {
+struct TInfo {
     int elemento;
     int prioridad;
+};
+
+struct nodoCP {
+    TInfo info;
     nodoCP* sig;
 };
 
@@ -15,16 +19,16 @@ colaP crearColaPrioridadVacia() {
 
 void insertarElemento(colaP& cp, int x, int prioridad) {
     nodoCP* nuevoNodo = new nodoCP;
-    nuevoNodo->elemento = x;
-    nuevoNodo->prioridad = prioridad;
+    nuevoNodo->info.elemento = x;
+    nuevoNodo->info.prioridad = prioridad;
     nuevoNodo->sig = NULL;
 
-    if (cp == NULL || nuevoNodo->prioridad < cp->prioridad) {
+    if (cp == NULL || nuevoNodo->info.prioridad < cp->info.prioridad) {
         nuevoNodo->sig = cp;
         cp = nuevoNodo;
     } else {
         colaP aux = cp;
-        while (aux->sig != NULL && aux->sig->prioridad < nuevoNodo->prioridad) {
+        while (aux->sig != NULL && aux->sig->info.prioridad < nuevoNodo->info.prioridad) {
             aux = aux->sig;
         }
         nuevoNodo->sig = aux->sig;
@@ -36,18 +40,24 @@ bool esColaVacia(colaP cp) {
     return cp == NULL;
 }
 
-bool estaDefinido(colaP cp, int x) {
-    while (cp != NULL) {
-        if (cp->elemento == x) return true;
-        cp = cp->sig;
-    }
-    return false;
+TInfo obtenerMinimo(colaP cp) {
+    return cp->info;
 }
 
+void borrarMinimo(colaP& cp) {
+    if (cp != NULL) {
+        nodoCP* aBorrar = cp;
+        cp = cp->sig;
+        delete aBorrar;
+        aBorrar = NULL;
+    }
+}
+
+// Adicional al ejercicio.
 void borrar(colaP& cp, int x) {
     if (cp == NULL) return;
 
-    if (cp->elemento == x) {
+    if (cp->info.elemento == x) {
         nodoCP* aBorrar = cp;
         cp = cp->sig;
         delete aBorrar;
@@ -56,7 +66,7 @@ void borrar(colaP& cp, int x) {
 
     nodoCP* aux = cp;
     while (aux->sig != NULL) {
-        if (aux->sig->elemento == x) {
+        if (aux->sig->info.elemento == x) {
             nodoCP* aBorrar = aux->sig;
             aux->sig = aux->sig->sig;
             delete aBorrar;

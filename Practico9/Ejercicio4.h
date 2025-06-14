@@ -52,7 +52,6 @@ bool ExisteX(int x, Lista l);
 
 // Remueve el primer elementode 'l' cuya primera coordenada es 'x'.
 // Precondición: ExisteX (x,l).
-
 void RemoverX(int x, Lista& l);
 
 #endif

@@ -2,15 +2,10 @@
 
 #include "../Practico9/Ejercicio4.h"
 
-struct nodoHash {
-    Punto pt;
-    nodoHash *sig;
-};
-
 struct rep_grafica {
     int cota;
     int cantidadElementos;
-    Lista *tabla;
+    Lista *tabla;  // Arreglo de listas
 };
 
 int funcionHash(int x, int cantidadElementos) {
@@ -42,10 +37,14 @@ void Asociar(int x, int y, grafica &g) {
 int Valor(int x, grafica g) {
     int indiceHash = funcionHash(x, g->cota);
 
-    if (ExisteX(x, g->tabla[indiceHash])) {
-        return x;
-    } else {
+    Lista iterador = g->tabla[indiceHash];
+    while (!EsVaciaLista(iterador) && Primero(iterador).x != x) {
+        Resto(iterador);
+    }
+    if (EsVaciaLista(iterador)) {
         return -1;
+    } else {
+        return Primero(iterador).y;
     }
 }
 

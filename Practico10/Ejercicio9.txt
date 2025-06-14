@@ -5,7 +5,7 @@ void decTodas (uint restar, ColaPrio cp);
 
 ¿Es posible adaptar alguna de las implementaciones de Cola de Prioridad del Ejercicio 8 para que se pueda implementar decTodas sin recorrer todos los elementos?
 
-- No seria posible ya que tendriamos que recorrer si o si cada uno de los nodos asociados a la cola de prioridad 'cp' para poder modificar sus prioridades. Aunque quisieramos crear un cabezal el cual contenga un parametro 'resta' y dentro del nodo un 'bool yaRestado' y aplicasemos esos parametros cuando busquemos a un elemento en particular, si volvemos a llamar a la funcion, el resto de elementos no se habran actualizado correctamente.
+- No seria posible con la implementacion actual ya que tendriamos que recorrer si o si cada uno de los nodos asociados a la cola de prioridad 'cp' para poder modificar sus prioridades. Aunque quisieramos crear un cabezal el cual contenga un parametro 'resta' y dentro del nodo un 'bool yaRestado' y aplicasemos esos parametros cuando busquemos a un elemento en particular, si volvemos a llamar a la funcion, el resto de elementos no se habran actualizado correctamente.
 
 Podriamos crear un cabezal el cual contenga un int resta el cual puede ir incrementando a medida de que se llama la funcion decTodas.
 Dentro de cada uno de los nodos, el parametro prioridad tendria que ser algo como: int prioridad = prioridad - cabezal->resta (con prioridad - cabezal->resta>0). 

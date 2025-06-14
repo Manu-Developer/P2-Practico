@@ -1,0 +1,22 @@
+(a) Demuestre que si a un nodo le corresponde en el arreglo la posición i, entonces, en caso de existir, a sus hijos les corresponden las posiciones 2i y 2i + 1 y a su padre la posición ⌊i/2⌋.
+
+Aunque no sea una justificacion valida, es lo que se dio como material teorico a la hora de representar a los heaps como estructura.
+
+(b) Suponga que la correspondencia entre los nodos y las posiciones del arreglo empiezan en la posición 0, en vez de en la 1. 
+Esto es, a la raíz del árbol le corresponde la posición 0. Si a un nodo le corresponde la posición i, ¿qué posiciones, en caso de existir, les corresponden a sus hijos y a su padre?
+
+nodo_padre: (i - 1) / 2
+nodo_hijo_derecho: (2*i)+1
+nodo_hijo_izquierdo: (2*i)+2
+
+(c) Demuestre que si el árbol tiene n nodos la cantidad de hojas es ⌈n/2⌉.
+
+Los nodos que no tienen hijos son hojas.
+
+Para que un nodo i tenga al menos un hijo, su hijo izquierdo debe estar dentro del arreglo, es decir: 2i+1 < n ⇒ i< (n-1)/2
+
+Los nodos con índice i < floor((n-1)/2) + 1 = floor(n/2) tienen al menos un hijo.
+Por lo tanto, los nodos con índice i ≥ floor(n/2) no tienen hijos → Son hojas.
+
+Los nodos desde floor(n/2) hasta n - 1 son hojas.
+Entonces, la cantidad de hojas es: n - (n/2) = (n/2)
