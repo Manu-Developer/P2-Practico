@@ -10,6 +10,7 @@
 		"string": "cpp",
 		"cstring": "cpp",
 		"new": "cpp",
-		"limits": "cpp"
+		"limits": "cpp",
+		"numbers": "cpp"
 	}
 }
