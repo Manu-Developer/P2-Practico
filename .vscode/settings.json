@@ -11,6 +11,17 @@
 		"cstring": "cpp",
 		"new": "cpp",
 		"limits": "cpp",
-		"numbers": "cpp"
+		"numbers": "cpp",
+		"array": "cpp",
+		"charconv": "cpp",
+		"compare": "cpp",
+		"concepts": "cpp",
+		"cwchar": "cpp",
+		"optional": "cpp",
+		"string_view": "cpp",
+		"type_traits": "cpp",
+		"stdexcept": "cpp",
+		"system_error": "cpp",
+		"variant": "cpp"
 	}
 }

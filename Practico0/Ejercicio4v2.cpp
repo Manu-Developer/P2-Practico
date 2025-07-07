@@ -15,7 +15,7 @@ bool esPalindrome(char *frase) {
 }
 
 int main() {
-    char *frase = new char;
+    char *frase = new char[100];
 
     printf("Ingresa la frase: ");
 
